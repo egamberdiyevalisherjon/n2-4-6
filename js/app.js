@@ -45,3 +45,102 @@
 //   a();
 // }
 // a();
+
+// Promise => va'da
+
+// Callback Hell
+
+// function tl() {
+//   console.log("red");
+//   setTimeout(() => {
+//     console.log("yellow");
+
+//     setTimeout(() => {
+//       console.log("green");
+
+//       setTimeout(() => {
+//         console.log("yellow");
+
+//         setTimeout(() => {
+//           console.log("red");
+//         }, 1000);
+//       }, 3000);
+//     }, 1000);
+//   }, 3000);
+// }
+
+// tl();
+// setInterval(tl, 9000);
+
+// let car = new Promise((resolve, reject) => {
+//   setTimeout(() => {
+//     let r = Math.random();
+
+//     if (r > 0.5) {
+//       resolve();
+//     } else {
+//       reject();
+//     }
+//   }, 2_000);
+// });
+
+// car
+//   .then(() => {
+//     console.log("Uraaaa, Moshinali boldim 😃");
+//   })
+//   .catch(() => {
+//     console.log("Essiz, Moshinasiz qoldim 😢");
+//   })
+//   .finally(() => {
+//     console.log("Endi, Samalyot oldiraman 😇");
+//   });
+
+// function wait(time) {
+//   return new Promise((res) => {
+//     setTimeout(() => {
+//       res();
+//     }, time);
+//   });
+// }
+
+// wait(3000)
+//   .then(() => {
+//     console.log("3 sekund otti");
+//     return wait(3000);
+//   })
+//   .then(() => {
+//     console.log("yana 3 sekund otti");
+//     return wait(3000);
+//   })
+//   .then(() => {});
+
+// .then chain
+// function tl() {
+//   console.log("red");
+//   wait(3000)
+//     .then(() => {
+//       console.log("yellow");
+//       return wait(1000);
+//     })
+//     .then(() => {
+//       console.log("green");
+//       return wait(3000);
+//     })
+//     .then(() => {
+//       console.log("yellow");
+//       return wait(1000);
+//     })
+//     .then(() => {
+//       console.log("red");
+//     });
+// }
+// tl();
+
+// fetch("https://jsonplaceholder.sdfjs.cc")
+//   .then((res) => res.json())
+//   .then((data) => {
+//     console.log(data);
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
