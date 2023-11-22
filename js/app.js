@@ -95,13 +95,7 @@
 //     console.log("Endi, Samalyot oldiraman 😇");
 //   });
 
-// function wait(time) {
-//   return new Promise((res) => {
-//     setTimeout(() => {
-//       res();
-//     }, time);
-//   });
-// }
+const wait = (time) => new Promise((res) => setTimeout(res, time));
 
 // wait(3000)
 //   .then(() => {
@@ -144,3 +138,82 @@
 //   .catch((err) => {
 //     console.log(err);
 //   });
+
+// async function a() {
+//   await wait(3000);
+
+//   if (confirm("Hami yomi")) {
+//     console.log("ha");
+//   } else {
+//     console.log("yoq");
+//   }
+// }
+// a();
+
+// async function tl() {
+//   console.log("red");
+//   await wait(3000);
+//   console.log("yellow");
+//   await wait(1000);
+//   console.log("green");
+//   await wait(3000);
+//   console.log("yellow");
+//   await wait(1000);
+//   console.log("red");
+//   return "Salom";
+// }
+
+// let tlPromise = tl();
+
+// async function getUsers() {
+//   try {
+//     console.log("Sending request");
+//     let res = await fetch("https://jsonplaceholder.typicode.com/photos");
+//     console.log("Response");
+//     console.log("Converting to JSON");
+//     console.time("json");
+//     let data = await res.json();
+//     console.timeEnd("json");
+//     console.log("Converted to JSON");
+//     console.log(data);
+//   } catch (err) {
+//     console.log(err);
+//   } finally {
+//   }
+// }
+
+// getUsers();
+
+// let p = Promise.resolve().then(() => {
+//   console.log("inside of promise resolve");
+// });
+// console.log(p);
+
+// console.log(1);
+
+// setTimeout(() => {
+//   console.log(2);
+// }, 0);
+
+// queueMicrotask(() => {
+//   console.log(5);
+// });
+
+// Promise.resolve().then(() => {
+//   console.log(3);
+// });
+
+// console.log(4);
+
+(async function getData() {
+  let baseUrl = "https://jsonplaceholder.typicode.com";
+  let users = fetch(`${baseUrl}/users`).then((res) => res.json()); // 1s
+  let posts = fetch(`${baseUrl}/posts`).then((res) => res.json()); // 2s
+  let comments = fetch(`${baseUrl}/comments`).then((res) => res.json()); // 2s
+  let photos = fetch(`${baseUrl}/photos`).then((res) => res.json()); // 4s
+  let albums = fetch(`${baseUrl}/albums`).then((res) => res.json()); // 3s
+  let todos = fetch(`${baseUrl}/todos`).then((res) => res.json()); // 1s
+
+  let data = await Promise.all([users, posts, comments, photos, albums, todos]);
+  console.log(data);
+})();
