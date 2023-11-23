@@ -204,16 +204,27 @@ const wait = (time) => new Promise((res) => setTimeout(res, time));
 // });
 
 // console.log(4);
+let baseUrl = "https://jsonplaceholder.typicode.com";
 
 (async function getData() {
-  let baseUrl = "https://jsonplaceholder.typicode.com";
-  let users = fetch(`${baseUrl}/users`).then((res) => res.json()); // 1s
-  let posts = fetch(`${baseUrl}/posts`).then((res) => res.json()); // 2s
-  let comments = fetch(`${baseUrl}/comments`).then((res) => res.json()); // 2s
-  let photos = fetch(`${baseUrl}/photos`).then((res) => res.json()); // 4s
-  let albums = fetch(`${baseUrl}/albums`).then((res) => res.json()); // 3s
-  let todos = fetch(`${baseUrl}/todos`).then((res) => res.json()); // 1s
+  try {
+    let users = fetch(`${baseUrl}/users`).then((res) => res.json()); // 1s
+    let posts = fetch(`${baseUrl}/posts`).then((res) => res.json()); // 2s
+    let comments = fetch(`${baseUrl}/comments`).then((res) => res.json()); // 2s
+    let photos = fetch(`${baseUrl}/photos`).then((res) => res.json()); // 4s
+    let albums = fetch(`${baseUrl}/albums`).then((res) => res.json()); // 3s
+    let todos = fetch(`${baseUrl}/todos`).then((res) => res.json()); // 1s
 
-  let data = await Promise.all([users, posts, comments, photos, albums, todos]);
-  console.log(data);
+    let data = await Promise.all([
+      users,
+      posts,
+      comments,
+      photos,
+      albums,
+      todos,
+    ]);
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
 })();
